@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom'
 import { FaTrash } from 'react-icons/fa'
 
 const Navigation = () => {
   const navLinks = [
-    { href: '#', label: 'Home' },
-    { href: '#', label: 'Services' },
-    { href: '#', label: 'About' },
-    { href: '#', label: 'Contact' }
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' }
   ]
 
   return (
@@ -20,19 +21,22 @@ const Navigation = () => {
         
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link, index) => (
-            <a 
+            <Link 
               key={index}
-              href={link.href} 
+              to={link.href} 
               className="text-gray-900 hover:text-green-600 transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
         
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+        <Link 
+          to="/login"
+          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+        >
           Log In
-        </button>
+        </Link>
       </div>
     </nav>
   )

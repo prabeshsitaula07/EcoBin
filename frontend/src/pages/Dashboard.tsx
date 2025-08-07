@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import SideBar from "../components/SideBar";
 import profile from "../assets/ishan.jpg";
 import { FaChartLine, FaChartBar, FaChartPie } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 // import { FaUserCircle } from "react-icons/fa"; // Remove this import
 
 const notifications = [
@@ -54,7 +55,9 @@ const Dashboard = () => (
                      <h2 className="text-2xl font-bold text-[#00A72C]">Ishan Sitaula</h2>
            <p className="text-gray-600 text-sm">Nepaltar, Bodegal Road</p>
           <p className="text-gray-600 text-sm mb-4">+977 9876543210</p>
-          <button className="bg-[#00A72C] text-white px-6 py-1 rounded-lg font-semibold hover:bg-[#00A72C]/90 transition">Edit</button>
+          <Link to='/edit-profile'>
+          <button className="bg-[#00A72C] text-white px-6 py-1 rounded-lg font-semibold hover:bg-[#00A72C]/90 transition hover:cursor-pointer">Edit</button>
+          </Link>
         </motion.div>
         {/* Notification Section - full right */}
         <motion.div 

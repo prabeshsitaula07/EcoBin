@@ -22,15 +22,19 @@ import WasteDisposalHistory from './pages/WasteDisposalHistory'
 import WasteClassification from './pages/WasteClassification'
 import LiveTracking from './pages/LiveTracking'
 import PaymentSystem from './pages/PaymentSystem'
+import useScrollToTop from './hooks/useScrollToTop'
 
 
-const WithNavAndFooter = ({ children }: { children: React.ReactNode }) => (
-  <>
-    <Navigation />
-    {children}
-    <Footer />
-  </>
-)
+const WithNavAndFooter = ({ children }: { children: React.ReactNode }) => {
+  useScrollToTop();
+  return (
+    <>
+      <Navigation />
+      {children}
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   return (

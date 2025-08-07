@@ -59,10 +59,10 @@ const HeroSection = () => {
             className="text-gray-600 text-lg mb-8"
             variants={itemVariants}
           >
-            Connecting citizens and municipalities for smarter waste solutions.
+            Digitalizing Urban Cleanliness and Citizen Engagement
           </motion.p>
           <motion.button 
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="bg-[#00A72C] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#00A72C]/90 transition-colors"
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion'
-import Navigation from './Navigation'
-import HeroSection from './HeroSection'
-import ProblemSection from './ProblemSection'
-import SolutionSection from './SolutionSection'
-import TestimonialSection from './TestimonialSection'
+import HeroSection from '../components/HeroSection'
+import WhyChooseUs from '../components/WhyChooseUs'
+import SolutionSection from '../components/SolutionSection'
+import TestimonialSection from '../components/TestimonialSection'
 
 const HomePage = () => {
   const containerVariants = {
@@ -34,14 +33,13 @@ const HomePage = () => {
       initial="hidden"
       animate="visible"
     >
-      <Navigation />
       
       <motion.div variants={sectionVariants}>
         <HeroSection />
       </motion.div>
       
       <motion.div variants={sectionVariants}>
-        <ProblemSection />
+        <WhyChooseUs />
       </motion.div>
       
       <motion.div variants={sectionVariants}>

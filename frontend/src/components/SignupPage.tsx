@@ -331,7 +331,7 @@ const SignupPage = () => {
             {/* Submit Button */}
             <motion.button
               type="submit"
-              className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+              className="w-full bg-[#00A72C] text-white py-3 px-4 rounded-lg font-semibold hover:bg-[#00A72C]/90 focus:outline-none focus:ring-2 focus:ring-[#00A72C] focus:ring-offset-2 transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

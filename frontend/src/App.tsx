@@ -19,6 +19,10 @@ import TransactionHistory from './pages/TransactionHistory'
 import WasteTruckSchedule from './pages/WasteTruckSchedule'
 import ManageNotifications from './pages/ManageNotifications'
 import WasteDisposalHistory from './pages/WasteDisposalHistory'
+import WasteClassification from './pages/WasteClassification'
+import LiveTracking from './pages/LiveTracking'
+import PaymentSystem from './pages/PaymentSystem'
+
 
 const WithNavAndFooter = ({ children }: { children: React.ReactNode }) => (
   <>
@@ -50,6 +54,9 @@ function App() {
         <Route path="/notifier/schedule" element={<WasteTruckSchedule />} />
         <Route path="/notifier/notification-setting" element={<ManageNotifications />} />
         <Route path="/history/waste-disposal" element={<WasteDisposalHistory />} />
+        <Route path="/features/waste-classification" element={<WithNavAndFooter><WasteClassification /></WithNavAndFooter>} />
+        <Route path="/features/live-tracking" element={<WithNavAndFooter><LiveTracking /></WithNavAndFooter>} />
+        <Route path="/features/payment-system" element={<WithNavAndFooter><PaymentSystem /></WithNavAndFooter>} />
       </Routes>
     </Router>
   )

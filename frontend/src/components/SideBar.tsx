@@ -173,19 +173,19 @@ const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
           {openMenu === "notifier" && (
             <div className="ml-6 mt-1 space-y-1">
               <Link
-                to="/notifier/collection"
+                to="/notifier/schedule"
                 className="block p-2 hover:bg-gray-700 rounded transition-colors duration-200"
               >
                 Waste Truck Schedule
               </Link>
               <Link
-                to="/notifier/payment"
+                to="/notifier/notification-setting"
                 className="block p-2 hover:bg-gray-700 rounded transition-colors duration-200"
               >
                 Manage Notifications
               </Link>
               <Link
-                to="#"
+                to="/history/waste-disposal"
                 className="block p-2 hover:bg-gray-700 rounded transition-colors duration-200"
               >
                 Waste Disposal History

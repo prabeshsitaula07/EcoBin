@@ -16,6 +16,7 @@ import ImageResultPage from './pages/ImageResultPage'
 import InvoiceClearance from './pages/InvoiceClearance'
 import InvoiceDeclaration from './pages/InvoiceDeclaration'
 import TransactionHistory from './pages/TransactionHistory'
+import WasteTruckSchedule from './pages/WasteTruckSchedule'
 
 const WithNavAndFooter = ({ children }: { children: React.ReactNode }) => (
   <>
@@ -44,6 +45,7 @@ function App() {
         <Route path="/waste/payment" element={<InvoiceClearance />} />
         <Route path="/waste/declaration" element={<InvoiceDeclaration />} />
         <Route path="/transaction-history" element={<TransactionHistory />} />
+        <Route path="/notifier/schedule" element={<WasteTruckSchedule />} />
       </Routes>
     </Router>
   )

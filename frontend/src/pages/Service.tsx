@@ -48,7 +48,12 @@ const ServiceSection = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-7xl mx-auto px-6 py-16 min-h-screen"
+    >
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -100,7 +105,7 @@ const ServiceSection = () => {
           </motion.div>
         ))}
       </motion.div>
-    </section>
+    </motion.section>
   )
 }
 

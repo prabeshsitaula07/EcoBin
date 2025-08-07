@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const ContactSection = () => {
   const [form, setForm] = useState({
@@ -20,7 +21,12 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-[#f5faf6]">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen flex items-center justify-center bg-[#f5faf6]"
+    >
       <div className="bg-white rounded-2xl shadow max-w-xl w-full p-10">
         <h2 className="text-3xl font-bold text-center mb-2">Get in Touch</h2>
         <p className="text-center text-gray-700 mb-8">
@@ -96,7 +102,7 @@ const ContactSection = () => {
           </button>
         </form>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

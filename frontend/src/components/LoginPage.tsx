@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaArrowLeft } from 'react-icons/fa'
 
 const LoginPage = () => {
@@ -10,6 +10,7 @@ const LoginPage = () => {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -48,8 +49,17 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (validateForm()) {
-      // Handle login logic here
-      console.log('Login data:', formData)
+      if (
+        formData.email === 'user1@gmail.com' &&
+        formData.password === 'User1234'
+      ) {
+        navigate('/dashboard');
+      } else {
+        setErrors({
+          email: '',
+          password: 'Invalid email or password'
+        });
+      }
     }
   }
 

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import SideBar from '../components/SideBar';
 import { 
   FaUsers, 
-  FaBuilding, 
   FaUserCheck, 
   FaUserTimes, 
   FaPhone,

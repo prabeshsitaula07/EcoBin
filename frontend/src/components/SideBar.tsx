@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
 import {
   ChevronDown,
   ChevronRight,
   CreditCard,
   Home,
-  Settings,
   BellIcon,
   LogOut,
-  Trash2
 } from "lucide-react";
 import { Link } from "react-router-dom"; // ✅ import Link
 

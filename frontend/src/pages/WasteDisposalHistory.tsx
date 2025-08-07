@@ -6,8 +6,6 @@ import {
   FaDownload,
   FaRecycle,
   FaLeaf,
-  FaCheckCircle,
-  FaHourglassHalf
 } from 'react-icons/fa';
 import { FaBottleWater } from 'react-icons/fa6';
 

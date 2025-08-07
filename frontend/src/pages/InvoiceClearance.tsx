@@ -5,10 +5,6 @@ import {
   FaLeaf, 
   FaExclamationTriangle, 
   FaRegCircle,
-  FaCalendarAlt,
-  FaMoneyBillWave,
-  FaCreditCard,
-  FaPaypal
 } from 'react-icons/fa';
 import esewaLogo from '../assets/esewa.png';
 import khaltiLogo from '../assets/khalti.png';

@@ -3,14 +3,11 @@ import SideBar from '../components/SideBar';
 import { 
   FaBell,
   FaCog,
-  FaCheckCircle,
-  FaTimes,
   FaEnvelope,
   FaMobile,
   FaDesktop,
   FaClock,
   FaTrash,
-  FaEdit,
   FaEye
 } from 'react-icons/fa';
 import { useState } from 'react';

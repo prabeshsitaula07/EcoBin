@@ -8,7 +8,6 @@ import {
   FaClock,
   FaUser,
   FaCheckCircle,
-  FaRecycle
 } from 'react-icons/fa';
 
 const containerVariants = {

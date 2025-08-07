@@ -22,6 +22,7 @@ import WasteDisposalHistory from './pages/WasteDisposalHistory'
 import WasteClassification from './pages/WasteClassification'
 import LiveTracking from './pages/LiveTracking'
 import PaymentSystem from './pages/PaymentSystem'
+import AiAssistant from './pages/AiAssistant'
 import useScrollToTop from './hooks/useScrollToTop'
 
 
@@ -61,6 +62,7 @@ function App() {
         <Route path="/features/waste-classification" element={<WithNavAndFooter><WasteClassification /></WithNavAndFooter>} />
         <Route path="/features/live-tracking" element={<WithNavAndFooter><LiveTracking /></WithNavAndFooter>} />
         <Route path="/features/payment-system" element={<WithNavAndFooter><PaymentSystem /></WithNavAndFooter>} />
+        <Route path="/features/ai-assistant" element={<WithNavAndFooter><AiAssistant /></WithNavAndFooter>} />
       </Routes>
     </Router>
   )

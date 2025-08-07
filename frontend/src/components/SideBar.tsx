@@ -132,7 +132,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
           {openMenu === "waste" && (
             <div className="ml-6 mt-1 space-y-1">
               <Link
-                to="/waste/collection"
+                to="/waste/declaration"
                 className="block p-2 hover:bg-gray-700 rounded transition-colors duration-200"
               >
                 Invoice Declarations
@@ -144,7 +144,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
                 Invoice Clearance
               </Link>
               <Link
-                to="#"
+                to="/transaction-history"
                 className="block p-2 hover:bg-gray-700 rounded transition-colors duration-200"
               >
                 Transaction History

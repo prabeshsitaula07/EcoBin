@@ -13,6 +13,9 @@ import ImageClassifier from './pages/ImageClassifier'
 import EditProfile from './pages/EditProfile'
 import TenantManagement from './pages/TenantManagement'
 import ImageResultPage from './pages/ImageResultPage'
+import InvoiceClearance from './pages/InvoiceClearance'
+import InvoiceDeclaration from './pages/InvoiceDeclaration'
+import TransactionHistory from './pages/TransactionHistory'
 
 const WithNavAndFooter = ({ children }: { children: React.ReactNode }) => (
   <>
@@ -38,6 +41,9 @@ function App() {
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/tenant-management" element={<TenantManagement />} />
         <Route path="/image-result" element={<ImageResultPage />} />
+        <Route path="/waste/payment" element={<InvoiceClearance />} />
+        <Route path="/waste/declaration" element={<InvoiceDeclaration />} />
+        <Route path="/transaction-history" element={<TransactionHistory />} />
       </Routes>
     </Router>
   )

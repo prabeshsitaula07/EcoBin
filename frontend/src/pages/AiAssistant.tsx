@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { 
   FaArrowLeft,
   FaQuestionCircle,
-  FaTrash,
   FaLightbulb,
   FaComments,
   FaRecycle,
   FaRobot,
   FaUser,
-  FaCheckCircle
 } from 'react-icons/fa';
 
 const containerVariants = {

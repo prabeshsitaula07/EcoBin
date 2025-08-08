@@ -1,67 +1,81 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaArrowLeft } from 'react-icons/fa'
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  FaEye,
+  FaEyeSlash,
+  FaEnvelope,
+  FaLock,
+  FaArrowLeft,
+} from "react-icons/fa";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
-  const [showPassword, setShowPassword] = useState(false)
-  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    email: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
+      [name]: value,
+    }));
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
-      }))
+        [name]: "",
+      }));
     }
-  }
+  };
 
   const validateForm = () => {
-    const newErrors: { [key: string]: string } = {}
+    const newErrors: { [key: string]: string } = {};
 
     if (!formData.email) {
-      newErrors.email = 'Email is required'
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid'
+      newErrors.email = "Email is invalid";
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required'
+      newErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters'
+      newErrors.password = "Password must be at least 6 characters";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  const authentication = localStorage.getItem("authentication");
+
+  useEffect(() => {
+    if (authentication === "true") {
+      navigate("/dashboard");
+    }
+  }, [authentication]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (validateForm()) {
       if (
-        formData.email === 'user1@gmail.com' &&
-        formData.password === 'User1234'
+        formData.email === "user1@gmail.com" &&
+        formData.password === "User1234"
       ) {
-        navigate('/dashboard');
+        navigate("/dashboard");
+        localStorage.setItem("authentication", "true");
       } else {
         setErrors({
-          email: '',
-          password: 'Invalid email or password'
+          email: "",
+          password: "Invalid email or password",
         });
       }
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
@@ -72,10 +86,7 @@ const LoginPage = () => {
         className="w-full max-w-md"
       >
         {/* Back to Home */}
-        <motion.div
-          whileHover={{ x: -5 }}
-          transition={{ duration: 0.2 }}
-        >
+        <motion.div whileHover={{ x: -5 }} transition={{ duration: 0.2 }}>
           <Link
             to="/"
             className="inline-flex items-center text-green-600 hover:text-green-700 mb-6 transition-colors"
@@ -130,7 +141,10 @@ const LoginPage = () => {
           >
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email Address
               </label>
               <div className="relative">
@@ -144,7 +158,7 @@ const LoginPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
-                    errors.email ? 'border-red-300' : 'border-gray-300'
+                    errors.email ? "border-red-300" : "border-gray-300"
                   }`}
                   placeholder="Enter your email"
                 />
@@ -162,7 +176,10 @@ const LoginPage = () => {
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Password
               </label>
               <div className="relative">
@@ -170,13 +187,13 @@ const LoginPage = () => {
                   <FaLock className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   className={`block w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
-                    errors.password ? 'border-red-300' : 'border-gray-300'
+                    errors.password ? "border-red-300" : "border-gray-300"
                   }`}
                   placeholder="Enter your password"
                 />
@@ -212,11 +229,17 @@ const LoginPage = () => {
                   type="checkbox"
                   className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                <label
+                  htmlFor="remember-me"
+                  className="ml-2 block text-sm text-gray-700"
+                >
                   Remember me
                 </label>
               </div>
-              <a href="#" className="text-sm text-green-600 hover:text-green-700 transition-colors">
+              <a
+                href="#"
+                className="text-sm text-green-600 hover:text-green-700 transition-colors"
+              >
                 Forgot password?
               </a>
             </div>
@@ -240,8 +263,11 @@ const LoginPage = () => {
             className="mt-8 text-center"
           >
             <p className="text-gray-600">
-              Don't have an account?{' '}
-              <Link to="/signup" className="text-green-600 hover:text-green-700 font-semibold transition-colors">
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-green-600 hover:text-green-700 font-semibold transition-colors"
+              >
                 Sign up
               </Link>
             </p>
@@ -249,7 +275,7 @@ const LoginPage = () => {
         </motion.div>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage 
+export default LoginPage;

@@ -3,7 +3,8 @@ import SideBar from "../components/SideBar";
 import profile from "../assets/ishan.jpg";
 import { FaChartLine, FaChartBar, FaChartPie } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-// import { FaUserCircle } from "react-icons/fa"; // Remove this import
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useState } from 'react';
 
 const notifications = [
   { text: "Invoice generated", date: "24th Aug, 2025" },
@@ -36,22 +37,99 @@ const cardVariants = {
   }
 };
 
-const Dashboard = () => (
-  <div className="flex min-h-screen bg-[#f6fbf7]">
-    <SideBar />
-    <motion.div 
-      className="flex-1 p-6"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        {/* Profile Card */}
-        <motion.div 
-          className="bg-white rounded-xl shadow p-6 flex flex-col items-center"
-          variants={cardVariants}
-        >
-          <img src={profile} alt="Profile" className="w-16 h-16 mb-2 rounded-full object-cover border-2 border-gray-200" />
+const Dashboard = () => {
+  const [chartType, setChartType] = useState<'line' | 'bar' | 'pie'>('line');
+
+  // Sample data for different chart types
+  const weeklyData = [
+    { day: 'Mon', organic: 12, inorganic: 8, total: 20 },
+    { day: 'Tue', organic: 15, inorganic: 10, total: 25 },
+    { day: 'Wed', organic: 18, inorganic: 12, total: 30 },
+    { day: 'Thu', organic: 14, inorganic: 9, total: 23 },
+    { day: 'Fri', organic: 20, inorganic: 15, total: 35 },
+    { day: 'Sat', organic: 16, inorganic: 11, total: 27 },
+    { day: 'Sun', organic: 13, inorganic: 7, total: 20 },
+  ];
+
+  const pieData = [
+    { name: 'Organic Waste', value: 65, color: '#00A72C' },
+    { name: 'Inorganic Waste', value: 35, color: '#FF6B35' },
+  ];
+
+  const renderChart = () => {
+    switch (chartType) {
+      case 'line':
+        return (
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart data={weeklyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="organic" stroke="#00A72C" strokeWidth={3} />
+              <Line type="monotone" dataKey="inorganic" stroke="#FF6B35" strokeWidth={3} />
+              <Line type="monotone" dataKey="total" stroke="#4A90E2" strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
+        );
+      case 'bar':
+        return (
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={weeklyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="organic" fill="#00A72C" />
+              <Bar dataKey="inorganic" fill="#FF6B35" />
+            </BarChart>
+          </ResponsiveContainer>
+        );
+      case 'pie':
+        return (
+          <ResponsiveContainer width="100%" height={200}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-[#f6fbf7]">
+      <SideBar />
+      <motion.div 
+        className="flex-1 p-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {/* Profile Card */}
+          <motion.div 
+            className="bg-white rounded-xl shadow p-6 flex flex-col items-center"
+            variants={cardVariants}
+          >
+            <img src={profile} alt="Profile" className="w-16 h-16 mb-2 rounded-full object-cover border-2 border-gray-200" />
                      <h2 className="text-2xl font-bold text-[#00A72C]">Ishan Sitaula</h2>
            <p className="text-gray-600 text-sm">Nepaltar, Bodegal Road</p>
           <p className="text-gray-600 text-sm mb-4">+977 9876543210</p>
@@ -105,7 +183,7 @@ const Dashboard = () => (
         ))}
       </motion.div>
       <motion.div 
-        className="bg-white rounded-xl shadow p-6 mt-6 h-64"
+        className="bg-white rounded-xl shadow p-6 mt-6"
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
@@ -114,52 +192,51 @@ const Dashboard = () => (
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold text-gray-900">Waste Collection Analytics</h3>
           <div className="flex gap-2">
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition">
-              <FaChartLine className="w-4 h-4 text-[#00A72C]" />
+            <button 
+              className={`p-2 rounded-lg transition ${chartType === 'line' ? 'bg-[#00A72C] text-white' : 'hover:bg-gray-100 text-gray-400'}`}
+              onClick={() => setChartType('line')}
+            >
+              <FaChartLine className="w-4 h-4" />
             </button>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition">
-              <FaChartBar className="w-4 h-4 text-gray-400" />
+            <button 
+              className={`p-2 rounded-lg transition ${chartType === 'bar' ? 'bg-[#00A72C] text-white' : 'hover:bg-gray-100 text-gray-400'}`}
+              onClick={() => setChartType('bar')}
+            >
+              <FaChartBar className="w-4 h-4" />
             </button>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition">
-              <FaChartPie className="w-4 h-4 text-gray-400" />
+            <button 
+              className={`p-2 rounded-lg transition ${chartType === 'pie' ? 'bg-[#00A72C] text-white' : 'hover:bg-gray-100 text-gray-400'}`}
+              onClick={() => setChartType('pie')}
+            >
+              <FaChartPie className="w-4 h-4" />
             </button>
           </div>
         </div>
         
-        {/* Random Graph */}
-        <div className="h-fit flex items-end justify-between gap-2">
-          {Array.from({ length: 7 }, (_, i) => {
-            const height = Math.floor(Math.random() * 60) + 20; // Random height between 20-80
-            const isToday = i === 6; // Last bar represents today
-            return (
-              <motion.div
-                key={i}
-                className="flex flex-col items-center"
-                initial={{ opacity: 0, scaleY: 0 }}
-                animate={{ opacity: 1, scaleY: 1 }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-              >
-                <div 
-                  className={`w-8 rounded-t-lg transition-all duration-300 hover:scale-105 ${
-                    isToday ? 'bg-[#00A72C]' : 'bg-gray-300'
-                  }`}
-                  style={{ height: `${height}%` }}
-                ></div>
-                <span className="text-xs text-gray-500 mt-2">
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i]}
-                </span>
-              </motion.div>
-            );
-          })}
+        {/* Enhanced Chart */}
+        <div className="h-64">
+          {renderChart()}
         </div>
         
-        {/* Graph Legend */}
-        <div className="flex items-center justify-center gap-6 mt-4 text-sm">
-          
+        {/* Chart Summary */}
+        <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <div className="text-2xl font-bold text-[#4A90E2]">108</div>
+            <div className="text-sm text-gray-600">Total Collections</div>
+          </div>
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <div className="text-2xl font-bold text-[#00A72C]">70</div>
+            <div className="text-sm text-gray-600">Organic Waste</div>
+          </div>
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <div className="text-2xl font-bold text-[#FF6B35]">38</div>
+            <div className="text-sm text-gray-600">Inorganic Waste</div>
+          </div>
         </div>
       </motion.div>
     </motion.div>
   </div>
-);
+  );
+};
 
 export default Dashboard;

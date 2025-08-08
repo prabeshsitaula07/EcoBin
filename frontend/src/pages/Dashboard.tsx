@@ -155,7 +155,9 @@ const Dashboard = () => {
               <span className="text-xs text-gray-500">{n.date}</span>
             </div>
           ))}
+          <Link to='/notifier/notification-setting'>
           <button className="mt-4 bg-[#00A72C] text-white px-4 py-1 rounded-lg font-semibold hover:bg-[#00A72C]/90 transition self-end">View all</button>
+          </Link>
         </motion.div>
       </div>
       {/* Stats below */}
@@ -175,7 +177,9 @@ const Dashboard = () => {
             <span className="text-gray-500 text-sm">{card.label}</span>
             <span className="text-4xl font-bold text-[#00A72C]">{card.value}</span>
             {card.isBilling ? (
+              <Link to='/waste/payment'>
               <button className="mt-2 bg-[#00A72C] text-white px-6 py-1 rounded-lg font-semibold hover:bg-[#00A72C]/90 transition">Pay</button>
+              </Link>
             ) : (
               <span className="text-xs text-gray-500 mt-1">On fiscal year 2025/26</span>
             )}

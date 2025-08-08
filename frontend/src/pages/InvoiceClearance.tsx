@@ -9,6 +9,7 @@ import {
 import esewaLogo from '../assets/esewa.png';
 import khaltiLogo from '../assets/khalti.png';
 import fonepayLogo from '../assets/fonepay.png';
+import { EsewaButton } from '../components/EsewaButton';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -200,7 +201,7 @@ const InvoiceClearance = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Pay
+                  <EsewaButton/>
                 </motion.button>
               </div>
             </motion.div>

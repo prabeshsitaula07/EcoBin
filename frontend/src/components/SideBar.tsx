@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -7,32 +7,52 @@ import {
   BellIcon,
   LogOut,
 } from "lucide-react";
-import { Link } from "react-router-dom"; // ✅ import Link
+import { Link, useNavigate } from "react-router-dom"; 
 
-interface SidebarProps {
-  onLogout?: () => void;
-}
 
 type MenuName = "dashboard" | "waste" | "notifier";
 
-const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
+const Sidebar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<MenuName | null>(null);
+  const [logoutModel, setLogoutModel] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const authentication = localStorage.getItem('authentication');
+
+  useEffect(()=>{
+    if(authentication !== "true"){
+      navigate('/')
+    }
+  }
+  ,[authentication]
+)
 
   const toggleDropdown = (menuName: MenuName): void => {
     setOpenMenu(openMenu === menuName ? null : menuName);
   };
 
   const handleLogout = (): void => {
-    if (onLogout) {
-      onLogout();
-    } else {
-      console.log("Logging out...");
-    }
+      navigate('/')
+      localStorage.removeItem('authentication');
   };
 
   return (
     <div className="w-64 min-h-screen bg-[#022002] text-white flex flex-col">
       {/* Header */}
+      {
+        logoutModel && 
+        <>
+         <div className="fixed  w-full h-full bg-black/70 flex items-center justify-center">
+         <div className="w-[30%] rounded-2xl h-64 bg-white text-black flex justify-center items-center flex-col">
+          <h1 className="text-2xl">Are you sure you want to logout?</h1>
+          <div className="mt-10 w-full justify-around flex">
+            <button onClick={()=>setLogoutModel(false)} className="bg-gray-500 py-2 px-4 text-white text-lg font-semibold rounded-lg hover:bg-gray-400 cursor-pointer duration-300 transition-all">No, Close</button>
+            <button onClick={handleLogout} className="bg-red-500 py-2 px-4 text-white text-lg font-semibold rounded-lg hover:bg-red-400 cursor-pointer duration-300 transition-all">Yes, Logout</button>
+          </div>
+         </div>
+         </div>
+        </>
+      }
       <div className="bg-[#22371C] p-4 border-b border-gray-600">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -42,15 +62,15 @@ const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
               <p className="text-xs text-gray-300">Smart Waste Management Tool</p>
             </div>
           </div>
-          <Link to="/">
+          
           <button
-            onClick={handleLogout}
+            onClick={()=> setLogoutModel(true)}
             className="p-2 hover:bg-[#1a2c16] rounded-lg transition-colors duration-200 cursor-pointer"
             title="Logout"
           >
             <LogOut size={18} className="text-gray-300 hover:text-white" />
           </button>
-          </Link>
+          
         </div>
       </div>
 

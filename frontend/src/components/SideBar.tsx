@@ -58,7 +58,7 @@ const Sidebar: React.FC = () => {
           <div className="flex items-center gap-2">
             <div>
              
-              <h1 className="text-xl font-bold text-white">Eco Bin</h1>
+              <h1 className="text-xl font-bold text-white">EcoBin</h1>
               <p className="text-xs text-gray-300">Smart Waste Management Tool</p>
             </div>
           </div>

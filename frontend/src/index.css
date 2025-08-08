@@ -1,1 +1,21 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/* Leaflet map container styles */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-popup-content {
+  margin: 8px;
+}
+
+.leaflet-popup-content h3 {
+  margin: 0 0 4px 0;
+  font-weight: bold;
+}
+
+.leaflet-popup-content p {
+  margin: 2px 0;
+}

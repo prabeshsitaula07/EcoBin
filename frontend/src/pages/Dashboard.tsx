@@ -52,8 +52,8 @@ const Dashboard = () => {
   ];
 
   const pieData = [
-    { name: 'Organic Waste', value: 65, color: '#00A72C' },
-    { name: 'Inorganic Waste', value: 35, color: '#FF6B35' },
+    { name: 'Organic Waste', value: 70, color: '#00A72C' },
+    { name: 'Inorganic Waste', value: 38, color: '#FF6B35' },
   ];
 
   const renderChart = () => {
